@@ -11,8 +11,8 @@ start = time.time()
 df = pd.read_csv('movies_with_genres.csv')
 movies = {}
 for index, row in df.iterrows():
-    title = row['title']
-    tags = str(row['tag']).split(', ')
+    title = row['originalTitle']
+    tags = str(row['genres']).split(', ')
     tags = [tag.strip() for tag in tags]
     movies[title] = tags
 
