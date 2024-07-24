@@ -6,7 +6,6 @@ import LSH_class
 
 # Đọc file CSV
 df = pd.read_csv('movies_with_genres.csv')
-print(df.shape)
 movies = {}
 for index, row in df.iterrows():
     title = row['originalTitle']
