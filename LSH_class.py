@@ -28,3 +28,13 @@ class LSH:
             if band in self.hash_tables[i]:
                 candidates.update(self.hash_tables[i][band])
         return list(candidates)
+    def show_signatures(self):
+        signatures = {}
+        for i, table in enumerate(self.hash_tables):
+            for band, keys in table.items():
+                for key in keys:
+                    if key not in signatures:
+                        signatures[key] = []
+                    signatures[key].append(band)
+        for key, bands in signatures.items():
+            print(f"Key: {key}, Bands: {bands}")
