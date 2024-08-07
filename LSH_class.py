@@ -28,7 +28,8 @@ class LSH:
             if band in self.hash_tables[i]:
                 candidates.update(self.hash_tables[i][band])
         return list(candidates)
-    def show_signatures(self):
+    
+    def show_signatures(self, display = 100):
         signatures = {}
         for i, table in enumerate(self.hash_tables):
             for band, keys in table.items():
@@ -36,5 +37,14 @@ class LSH:
                     if key not in signatures:
                         signatures[key] = []
                     signatures[key].append(band)
-        for key, bands in signatures.items():
-            print(f"Key: {key}, Bands: {bands}")
+                    if len(signatures) >= display:
+                        break
+                if len(signatures) >= display:
+                    break
+            if len(signatures) >= display:
+                break
+        
+        # Print only the first 10 unique keys and their bands as regular floats
+        for key, bands in list(signatures.items())[:10]:
+            band_strings = ', '.join(str(band) for band in bands)
+            print(f"Key: {key}, Bands: [{band_strings}]")
